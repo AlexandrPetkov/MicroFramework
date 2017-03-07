@@ -1,0 +1,11 @@
++ [open "http://www.google.com" "3"] 1.035
+! [checkPageTitle "Google Search Page"] 0.0
++ [checkpagetitle "Google"] 0.0
++ [checkLinkPresentByHref "http://www.google.by/imghp?hl=be&tab=wi"] 0.0
+! [checkPageContains "The best search engine"] 0.0
+Total tests: 5
+Passed/Failed: 3/2
+Total time: 1.035
+Average time: 0.20699999
+Average time v2: 207
+Average time v3: 0.207

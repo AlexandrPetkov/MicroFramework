@@ -1,0 +1,5 @@
+open "http://www.google.com" "3"
+checkPageTitle "Google Search Page"
+checkpagetitle "Google"
+checkLinkPresentByHref "http://www.google.by/imghp?hl=be&tab=wi"
+checkPageContains "The best search engine"
