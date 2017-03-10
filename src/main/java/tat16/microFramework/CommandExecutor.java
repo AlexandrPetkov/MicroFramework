@@ -2,16 +2,12 @@ package tat16.microFramework;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import tat16.microFramework.bean.Instruction;
 
@@ -61,7 +57,7 @@ public class CommandExecutor {
 				isSuccess = checkPageContains(parameters.get(0));
 				break;
 			default:
-				totalTestCount--;
+				isSuccess = false;
 				break;
 			}
 
@@ -83,56 +79,41 @@ public class CommandExecutor {
 		results.add("Total time: " + totalTime);
 		results.add("Average time: " + Math.round((totalTime / totalTestCount) * 1000) / 1000f);
 
+		for (int i = 0; i < results.size(); i++) {
+			System.out.println(results.get(i));
+		}
+
 		return results;
 	}
 
 	private boolean open(String urlString, String timeout) {
-		URL url = null;
-		URLConnection connection = null;
+		long startTime = new Date().getTime();
 		boolean isCommandAccept = false;
-		long startTime;
-		Map<String, List<String>> headers = new HashMap<>();
-		InputStream stream;
+		URL url = null;
+		float realTimeout = 0;
 
 		try {
 			url = new URL(urlString);
-			connection = url.openConnection();
-			connection.setConnectTimeout(3000);
-
-			connection.connect();
-
-			for (Map.Entry<String, List<String>> pair : connection.getHeaderFields().entrySet()) {
-				System.out.print(pair.getKey() + " : ");
-				for (int i = 0; i < pair.getValue().size(); i++) {
-					System.out.print(pair.getValue().get(i) + ", ");
-				}
-				System.out.println();
-			}
-
-			startTime = new Date().getTime();
-			stream = connection.getInputStream();
-			BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
-
-			StringBuilder builder = new StringBuilder();
-
-			while (reader.ready()) {
-				builder.append(reader.readLine() + NEWLINE);
-			}
-
-			page = builder.toString();
-		} catch (MalformedURLException e) {
-			// logger
-			e.printStackTrace();
-			return isCommandAccept;
-		} catch (IOException e) {
-			// logger
-			e.printStackTrace();
+		} catch (MalformedURLException e1) {
 			return isCommandAccept;
 		}
 
-		isCommandAccept = true;
+		try (BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()))) {
+			StringBuilder builder = new StringBuilder();
+			while (reader.ready()) {
+				builder.append(reader.readLine() + NEWLINE);
+			}
+			page = builder.toString();
+		} catch (IOException e) {
+			System.out.println("Возникли проблемы при чтении страницы с урлом: " + url.toString());
+			isCommandAccept = false;
+		}
 
-		// System.out.println(page);
+		realTimeout = new Date().getTime() - startTime;
+		if (realTimeout * 1000 <= Float.parseFloat(timeout)) {
+			isCommandAccept = true;
+		}
+
 		return isCommandAccept;
 	}
 

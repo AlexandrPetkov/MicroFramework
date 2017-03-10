@@ -1,5 +1,6 @@
-open "http://www.google.com" "3"
+open "http://www.google.by" "3"
 checkPageTitle "Google Search Page"
 checkpagetitle "Google"
 checkLinkPresentByHref "http://www.google.by/imghp?hl=be&tab=wi"
 checkPageContains "The best search engine"
+sd;cs,;dc,s

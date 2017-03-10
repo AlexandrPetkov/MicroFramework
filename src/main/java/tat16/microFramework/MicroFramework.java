@@ -2,6 +2,7 @@ package tat16.microFramework;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -15,44 +16,38 @@ public class MicroFramework {
 	private static final String SPACE = " ";
 	private static final String QUOTE = "\"";
 
-	private BufferedReader input;
-	private FileWriter output;
+	private File outputFile;
 	private List<Instruction> instructions = new ArrayList<>();
 
 	public MicroFramework() {
 	}
 
-	public MicroFramework(String inputFile, String outputFile) throws IOException {
+	public MicroFramework(String inputFile, String outputFile) {
 
 		initFramework(new File(inputFile), new File(outputFile));
-
 	}
 
-	public void initFramework(File inputFile, File outputFile) throws IOException {
+	public void initFramework(File inputFile, File outputFile) {
 
-		if (input != null) {
-			input.close();
+		try (BufferedReader input = new BufferedReader(new FileReader(inputFile))) {
+			initInstructions(input);
+
+		} catch (FileNotFoundException e) {
+			System.out.println("Указанный вами файл с командами не найден.");
+			System.exit(0);
+		} catch (IOException e1) {
+			System.out.println("Возникла ошибка ввода/вывода при попытке закрыть поток чтения из файла с командами");
 		}
 
-		if (output != null) {
-			output.close();
-		}
-
-		input = new BufferedReader(new FileReader(inputFile));
-		output = new FileWriter(outputFile);
-
-		initInstructions();
-
+		this.outputFile = outputFile;
 	}
 
-	public void initFramework(String inputFile, String outputFile) throws IOException {
+	public void initFramework(String inputFile, String outputFile) {
 
 		initFramework(new File(inputFile), new File(outputFile));
-
-		initInstructions();
 	}
 
-	public void startTesting() throws IOException {
+	public void startTesting() {
 
 		if (instructions != null) {
 			List<String> results = null;
@@ -64,28 +59,32 @@ public class MicroFramework {
 		}
 	}
 
-	private void outputResults(List<String> results) throws IOException {
+	private void outputResults(List<String> results) {
 
-		for (int i = 0; i < results.size(); i++) {
-			output.write(results.get(i) + "\n");
+		try (FileWriter writer = new FileWriter(outputFile)) {
+			for (int i = 0; i < results.size(); i++) {
+				writer.write(results.get(i) + "\n");
+			}
+			writer.flush();
+			writer.close();
+		} catch (IOException e) {
+			System.out.println("Возникла ошибка ввода/вывода при попытке записи в файл");
 		}
-
-		output.flush();
-		output.close();
-
 	}
 
-	private void initInstructions() throws IOException {
+	private void initInstructions(BufferedReader reader) {
 		Instruction instruction;
 		String line;
 
-		if (input != null) {
-			while (input.ready()) {
-				line = input.readLine().trim();
+		try {
+			while (reader.ready()) {
+				line = reader.readLine().trim();
 				instruction = convertStringToInstruction(line);
 
 				instructions.add(instruction);
 			}
+		} catch (IOException e) {
+			System.out.println("Возникла ошибка ввода/вывода при попытке чтения команды из файла");
 		}
 	}
 

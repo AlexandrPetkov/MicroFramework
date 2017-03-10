@@ -56,11 +56,11 @@ public class Instruction {
 	@Override
 	public String toString() {
 
-		return "[" + command + " " + parametersToString() + "]";
+		return "[" + command + parametersToString() + "]";
 	}
 
 	private String parametersToString() {
-		StringBuilder builder = new StringBuilder();
+		StringBuilder builder = new StringBuilder(" ");
 
 		for (int i = 0; i < parameters.size(); i++) {
 			builder.append("\"" + parameters.get(i) + "\" ");
