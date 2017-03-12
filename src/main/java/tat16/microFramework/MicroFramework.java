@@ -31,7 +31,7 @@ public class MicroFramework {
 
 		try (BufferedReader input = new BufferedReader(new FileReader(inputFile))) {
 			initInstructions(input);
-
+			input.close();
 		} catch (FileNotFoundException e) {
 			System.out.println("Указанный вами файл с командами не найден.");
 			System.exit(0);
@@ -83,6 +83,7 @@ public class MicroFramework {
 
 				instructions.add(instruction);
 			}
+
 		} catch (IOException e) {
 			System.out.println("Возникла ошибка ввода/вывода при попытке чтения команды из файла");
 		}
@@ -112,7 +113,6 @@ public class MicroFramework {
 					i++;
 				}
 				argument.append(strings[i]);
-
 				argument.deleteCharAt(0);
 				argument.deleteCharAt(argument.length() - 1);
 				parameters.add(argument.toString());

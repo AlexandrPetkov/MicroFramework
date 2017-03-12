@@ -1,10 +1,23 @@
-! [open "http://www.google.by" "3"] 0.414
++ [open "http://www.google.by" "3"] 0.488
 ! [checkPageTitle "Google Search Page"] 0.0
-+ [checkpagetitle "Google"] 0.0
-+ [checkLinkPresentByHref "http://www.google.by/imghp?hl=be&tab=wi"] 0.0
-! [checkPageContains "The best search engine"] 0.0
-! [sd;cs,;dc,s] 0.0
-Total tests: 6
-Passed/Failed: 2/4
-Total time: 0.414
-Average time: 0.069
++ [checkPageTitle "Google"] 0.0
+! [checkPageContains "Живой поиск"] 0.0
++ [checkLinkPresentByHref "/images/branding/product/ico/googleg_lodp.ico"] 0.004
+! [checkLinkPresentByHref "/"] 0.0
++ [checkLinkPresentByName "Drive"] 0.227
++ [open "http://www.mail.ru" "3.5"] 0.196
+! [checkPageTitle "Mail.Ru: почта, поиск в интернете, новости, игры"] 0.0
+! [checkPageTitle "Mail.Ru: почта, поиск в интернете"] 0.0
+! [checkPageContains "Живой поиск"] 0.0
+! [checkPageContains "content="Mail.Ru — крупнейшая бесплатная"] 0.0
+! [checkLinkPresentByHref "//limg.imgsmail.ru/splash/v/i/favicon-fp-e5142de215.ico"] 0.0
+! [checkLinkPresentByHref "//"] 0.0
+! [checkLinkPresentByName "Мой Мир"] 0.0
+! [checkLinkPresentByName "Мой"] 0.0
+! [open "http://www.google.by" "33333"] 0.001
+! [open "http://www.google.by"] 0.0
++ [open "http://www.tut.by" "0.2"] 0.057
+Total tests: 19
+Passed/Failed: 6/13
+Total time: 0.97299993
+Average time: 0.051

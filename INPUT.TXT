@@ -1,6 +1,19 @@
 open "http://www.google.by" "3"
 checkPageTitle "Google Search Page"
-checkpagetitle "Google"
-checkLinkPresentByHref "http://www.google.by/imghp?hl=be&tab=wi"
-checkPageContains "The best search engine"
-sd;cs,;dc,s
+checkPageTitle "Google"
+checkPageContains "Живой поиск"
+checkLinkPresentByHref "/images/branding/product/ico/googleg_lodp.ico"
+checkLinkPresentByHref /
+checkLinkPresentByName Drive
+open "http://www.mail.ru" "3.5"
+checkPageTitle "Mail.Ru: почта, поиск в интернете, новости, игры"
+checkPageTitle "Mail.Ru: почта, поиск в интернете"
+checkPageContains "Живой поиск"
+checkPageContains "content="Mail.Ru — крупнейшая бесплатная"
+checkLinkPresentByHref //limg.imgsmail.ru/splash/v/i/favicon-fp-e5142de215.ico
+checkLinkPresentByHref //
+checkLinkPresentByName "Мой Мир"
+checkLinkPresentByName Мой
+open "http://www.google.by" "33333"
+open "http://www.google.by"
+open "http://www.tut.by" 0.2
