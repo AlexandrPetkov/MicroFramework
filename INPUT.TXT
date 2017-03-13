@@ -5,11 +5,11 @@ checkPageContains "Живой поиск"
 checkLinkPresentByHref "/images/branding/product/ico/googleg_lodp.ico"
 checkLinkPresentByHref /
 checkLinkPresentByName Drive
-open "http://www.mail.ru" "3.5"
+open "https://www.mail.ru" "3.5"
 checkPageTitle "Mail.Ru: почта, поиск в интернете, новости, игры"
 checkPageTitle "Mail.Ru: почта, поиск в интернете"
 checkPageContains "Живой поиск"
-checkPageContains "content="Mail.Ru — крупнейшая бесплатная"
+checkPageContains " content="Mail.Ru — крупнейшая бесплатная"
 checkLinkPresentByHref //limg.imgsmail.ru/splash/v/i/favicon-fp-e5142de215.ico
 checkLinkPresentByHref //
 checkLinkPresentByName "Мой Мир"

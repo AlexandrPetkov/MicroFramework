@@ -104,21 +104,23 @@ public class MicroFramework {
 
 		for (int i = 1; i < strings.length; i++) {
 
-			if (strings[i].startsWith(QUOTE)) {
+			if (strings[i].length() > 0) {
+				if (strings[i].startsWith(QUOTE) && strings[i].length() > 1) {
 
-				argument = new StringBuilder();
+					argument = new StringBuilder();
 
-				while (!strings[i].endsWith(QUOTE)) {
-					argument.append(strings[i] + SPACE);
-					i++;
-				}
-				argument.append(strings[i]);
-				argument.deleteCharAt(0);
-				argument.deleteCharAt(argument.length() - 1);
-				parameters.add(argument.toString());
+					while (!strings[i].endsWith(QUOTE)) {
+						argument.append(strings[i] + SPACE);
+						i++;
+					}
+					argument.append(strings[i]);
+					argument.deleteCharAt(0);
+					argument.deleteCharAt(argument.length() - 1);
+					parameters.add(argument.toString());
 
-			} else
-				parameters.add(strings[i]);
+				} else
+					parameters.add(strings[i]);
+			}
 		}
 
 		instruction.setParameters(parameters);
