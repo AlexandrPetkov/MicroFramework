@@ -1,23 +1,23 @@
-+ [open "http://www.google.by" "3"] 0.351
++ [open "http://www.google.by" "3"] 0.382
 ! [checkPageTitle "Google Search Page"] 0.0
 + [checkPageTitle "Google"] 0.0
 ! [checkPageContains "Живой поиск"] 0.0
 + [checkLinkPresentByHref "/images/branding/product/ico/googleg_lodp.ico"] 0.0
 ! [checkLinkPresentByHref "/"] 0.0
-+ [checkLinkPresentByName "Drive"] 0.189
-+ [open "https://www.mail.ru" "3.5"] 1.515
++ [checkLinkPresentByName "Drive"] 0.262
++ [open "https://www.mail.ru" "3.5"] 1.283
 + [checkPageTitle "Mail.Ru: почта, поиск в интернете, новости, игры"] 0.0
 ! [checkPageTitle "Mail.Ru: почта, поиск в интернете"] 0.001
 ! [checkPageContains "Живой поиск"] 0.001
-+ [checkPageContains "content="Mail.Ru — крупнейшая бесплатная"] 0.0
+! [checkPageContains """ "content="Mail.Ru" "—" "крупнейшая" "бесплатная""] 0.0
 + [checkLinkPresentByHref "//limg.imgsmail.ru/splash/v/i/favicon-fp-e5142de215.ico"] 0.001
-! [checkLinkPresentByHref "//"] 0.012
-+ [checkLinkPresentByName "Мой Мир"] 0.823
-! [checkLinkPresentByName "Мой"] 159.406
-! [open "http://www.google.by" "33333"] 0.0
+! [checkLinkPresentByHref "//"] 0.003
++ [checkLinkPresentByName "Мой Мир"] 0.542
+! [checkLinkPresentByName "Мой"] 158.582
+! [open "http://www.google.by" "33333"] 0.001
 ! [open "http://www.google.by"] 0.0
-+ [open "http://www.tut.by" "0.2"] 0.079
++ [open "http://www.tut.by" "0.2"] 0.094
 Total tests: 19
-Passed/Failed: 10/9
-Total time: 162.378
-Average time: 8.546
+Passed/Failed: 9/10
+Total time: 161.15201
+Average time: 8.482
